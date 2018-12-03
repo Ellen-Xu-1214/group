@@ -1,0 +1,143 @@
+@import '~antd/dist/antd.css';
+
+
+.App {
+  text-align: center;
+  height: 667px;
+  width: 375px;
+  margin:0 auto;
+}
+
+.icon {
+  font-size: 40px;
+  margin-right: 10px;
+}
+
+.title{
+  font-size: 30px;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-family: "Chalkduster", monospace;
+  background: #EEE url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAHklEQVQImWNkYGBgYGD4//8/A5wF5SBYyAr+//8PAPOCFO0Q2zq7AAAAAElFTkSuQmCC) repeat;
+  text-shadow: 4px -4px black, 3px -3px white;
+  font-weight: bold;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text
+}
+
+.card{
+  width: 80%;
+  margin:0 auto;
+  font-family: "Chalkduster", monospace;
+  border-radius: 20px;
+}
+
+.card2{
+  margin:0 auto;
+  font-family: "Chalkduster", monospace;
+  border-radius: 20px;
+}
+
+.resultTitle{
+  color:#eb2f96;
+  margin-top: -5px;
+}
+
+
+.ant-input-lg {
+  font-family: 'Chalkduster';
+}
+
+.ant-cascader-menu-item{
+  font-family: 'Chalkduster';
+}
+
+.button{
+  border-radius: 20px;
+}
+
+.ant-list-item-content-single {
+  font-family: 'Chalkduster';
+}
+
+.ant-input-number-lg input{
+  font-family: 'Chalkduster';
+}
+
+.ant-cascader-input.ant-input {
+  font-family: 'Chalkduster';
+}
+
+
+.ant-btn:not([disabled]):hover {
+  font-family: 'Chalkduster';
+}
+
+.arrow{
+  float: right;
+}
+
+.names{
+  float: left;
+}
+
+.container{
+  position:relative;
+  width:200px;
+  height:200px; 
+  margin:0 auto; 
+  border:1px solid #F00;
+}
+
+.child{
+  width:50px;
+  height:50px;
+  background: rgb(255, 163, 161);
+  opacity: 0.3;
+  top:50%;
+  left:50%;
+}
+
+.dot{ 
+  position: absolute;
+  top:50%;
+  left:50%;
+  width:5px;
+  height:5px;
+  background:#F00;
+}
+
+.prize {
+  width: 250px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+.begin__btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:0 auto;
+}
+
+.row__item {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float:left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.row__item-active {
+  background-color: rgb(255, 163, 161);
+}
