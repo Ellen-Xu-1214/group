@@ -1,4 +1,5 @@
 @import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
 
 .App {
@@ -17,39 +18,36 @@
   font-size: 30px;
   margin-top: 20px;
   margin-left: 10px;
-  font-family: "Chalkduster", monospace;
-  background: #EEE url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAHklEQVQImWNkYGBgYGD4//8/A5wF5SBYyAr+//8PAPOCFO0Q2zq7AAAAAElFTkSuQmCC) repeat;
-  text-shadow: 4px -4px black, 3px -3px white;
+  font-family: 'Comfortaa','Arial';
   font-weight: bold;
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text
 }
 
 .card{
   width: 80%;
   margin:0 auto;
-  font-family: "Chalkduster", monospace;
+  font-family: 'Comfortaa','Raleway', sans-serif;
   border-radius: 20px;
 }
 
 .card2{
   margin:0 auto;
-  font-family: "Chalkduster", monospace;
+  font-family: 'Comfortaa','Raleway', sans-serif;
   border-radius: 20px;
 }
 
 .resultTitle{
   color:#eb2f96;
   margin-top: -5px;
+  font-weight: bold;
 }
 
 
 .ant-input-lg {
-  font-family: 'Chalkduster';
+  font-family: 'Comfortaa';
 }
 
 .ant-cascader-menu-item{
-  font-family: 'Chalkduster';
+  font-family: 'Comfortaa';
 }
 
 .button{
@@ -57,25 +55,30 @@
 }
 
 .ant-list-item-content-single {
-  font-family: 'Chalkduster';
+  font-family: 'Comfortaa';
 }
 
 .ant-input-number-lg input{
-  font-family: 'Chalkduster';
+  font-family: 'Comfortaa';
 }
 
 .ant-cascader-input.ant-input {
-  font-family: 'Chalkduster';
+  font-family: 'Comfortaa';
 }
 
 
 .ant-btn:not([disabled]):hover {
-  font-family: 'Chalkduster';
+  font-family: 'Comfortaa';
+}
+
+.ant-btn {
+  font-family: 'Comfortaa';
 }
 
 .arrow{
   float: right;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .names{

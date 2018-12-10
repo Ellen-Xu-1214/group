@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { Layout, Icon, Row, Col, Cascader, Card, InputNumber} from 'antd';
-import { Button, Input } from 'antd';
+import { Button } from 'antd';
 import './App.css';
-
+import firebase from 'firebase';
+import {firebase_config} from './firebase_config.js'
 import ResultList from './Components/ResultList.js';
 import RowItem from './Components/RowItem';
 import Todo from './Components/Todo';
+import Fire from './Components/Input';
+
+firebase.initializeApp(firebase_config);
+const database = firebase.database();
 
 const { Content } = Layout;
-
 
 class App extends Component {
   constructor(props) {
@@ -29,6 +33,8 @@ class App extends Component {
       // Whether rolling
       isRolling: false,
 
+      selectedResult: null,
+
       options : [
         {
         value: 'Class 1 (12 students)',
@@ -47,7 +53,19 @@ class App extends Component {
     };
   }
 
+  setNewData(path,data){
+    let reference = database.ref(path);
+    var nwePostRef = reference.push();
+    console.log('setNewData function is called!')
+    nwePostRef.set(data);
+  }
 
+  changeClass(){
+    this.setState({
+      class1: ['']
+    })
+  }
+  
   handleBegin() {
     // Start to draw when this.state.isRolling is false
     if (!this.state.isRolling) {
@@ -127,7 +145,7 @@ class App extends Component {
             let newlist=[];
             for(let j=0;j<length;j++){
                 let id=Math.ceil(Math.random(0,list1.length-1)*list1.length-1);
-                newlist.push(list1[id]);
+                if(list1[id]!== undefined){newlist.push(list1[id]);};
                 list1.splice(id,1);
             }
             let item = newlist.join(', ');
@@ -150,28 +168,31 @@ class App extends Component {
     let num=12/this.state.num;
 
     for(let j = 1; j <= num; j++){
+      if(this.state.groups[i][j-1] !== undefined){
       bricks.push(
         <RowItem show={this.state.groups[i][j-1]} content={this.state.list[j-1]} activedId={this.state.activedId}/>
         )
       }
+    }
       return bricks;
   }
 
-
+  setSelectedResult=(selectedResult)=>{
+    this.setState({selectedResult:selectedResult});
+    console.log(this.state.selectedResult)
+  }
 
   cardMaker = () => {
+
     let cards = [];
     let groups = this.state.groups;
-    for(let i=0; i<groups.length; i++){
 
+    for(let i=0; i<groups.length; i++){
       cards.push(
         <div>
         <Card className='card' bordered={false} id={i}>
-
           <Todo/>
-
           <br/><br/>
-
           <div className="prize">
             {this.bricks(i)}
           </div>
@@ -182,6 +203,7 @@ class App extends Component {
         <br/>
         </div>
       )
+
     }
     return cards
   }
@@ -210,13 +232,14 @@ class App extends Component {
                   placeholder="Select Class"
                   options={this.state.options}
                   size='large'/>
+      <Fire handleSetData={this.setNewData} />
       </Card>
       <br/>
 
       <Card className='card' bordered={false}>
         <Row type="flex" justify="center" align="middle">
           <Col> 
-            <label style={{fontSize: 12}}>Members Per Group:</label>
+            <label style={{fontSize: 14}}>Members Per Group:</label>
           </Col>
           <Col offset={1}>
             <InputNumber min={2} 
@@ -231,7 +254,7 @@ class App extends Component {
       <br/>
 
       <div>
-        <Button type='primary' class="button"
+        <Button type='primary' className="button"
         onClick={this.groupMaker}> 
         Make Groups
         </Button>
@@ -241,7 +264,7 @@ class App extends Component {
       <Card className='card' bordered={false}>
         <h1 className='resultTitle'>Results</h1>
         <div>
-          <ResultList dataSource={this.state}/>
+          <ResultList dataSource={this.state} handleSelectedResult={this.setSelectedResult}/>
         </div> 
       </Card>
       <br/>
