@@ -1,23 +1,34 @@
 import React from 'react';
-import {List} from 'antd';
+
 
 class ResultList extends React.Component {
     state = { 
         display: false,
     }
 
+    listItem=()=>{
+        const items=[];
+        for(let i=0;i<this.props.dataSource.results.length;i++){
+            items.push(
+            <li className="student-item">
+                {this.props.dataSource.results[i]} 
+                <a href={this.link(i)} className='arrow'> >> </a>
+            </li>
+            );
+    }
+    return items;
+}
+
+    link=(i)=> {
+        return '#' + i
+    }
+
     render() { 
         return ( 
         <div>
-        <List
-            bordered
-            dataSource={this.props.dataSource.results}
-            renderItem={item => (
-                <List.Item>
-                    {item} <br/>
-                    <a href="#dot" className='arrow'> >> </a>
-                </List.Item>)} 
-        />
+        <ul className="student-list">
+            {this.listItem()}
+        </ul>
 
         </div>
     );

@@ -5,9 +5,9 @@ import './App.css';
 
 import ResultList from './Components/ResultList.js';
 import RowItem from './Components/RowItem';
+import Todo from './Components/Todo';
 
 const { Content } = Layout;
-const { TextArea } = Input;
 
 
 class App extends Component {
@@ -20,18 +20,13 @@ class App extends Component {
       groups: [],
       member:[],
       perGroup: '2',
-
-      // 九宫格内容list
+      
       list: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      // 被选中的格子的ID
       activedId: '',
-      // 中奖ID
       prizeId: null,
-      // 获得prizeId之后计算出的动画次数
       times: 0,
-      // 当前动画次数
       actTimes: 0,
-      // 是否正在抽奖
+      // Whether rolling
       isRolling: false,
 
       options : [
@@ -54,9 +49,9 @@ class App extends Component {
 
 
   handleBegin() {
-    // this.state.isRolling为false的时候才能开始抽，不然会重复抽取，造成无法预知的后果
+    // Start to draw when this.state.isRolling is false
     if (!this.state.isRolling) {
-      // 点击抽奖之后，我个人做法是将于九宫格有关的状态都还原默认
+      // After click, back to default
       this.setState({
         activedId: '',
         prizeId: null,
@@ -64,30 +59,29 @@ class App extends Component {
         actTimes: 0,
         isRolling: true
       }, () => {
-        // 状态还原之后才能开始真正的抽奖
+        // Essential start
         this.handlePlay()
       })
     }
   }
   handlePlay() {
-    // 随机获取一个中奖ID
+    // Random choose id
     let prize = Math.floor(Math.random() * this.state.perGroup)
     console.log(prize)
     this.setState({
       prizeId: prize,
       activedId: 0
     })
-    // 随机算出一个动画执行的最小次数，这里可以随机变更数值，按自己的需求来
+    
     let times = this.state.list.length * Math.floor(Math.random() * 3 )
     this.setState({
       times: times
     })
-    // 抽奖正式开始↓↓
+    // Drawing
     this.begin = setInterval(() => {
       let num;
 
       if (this.state.activedId === this.state.prizeId && this.state.actTimes > this.state.times) {
-        // 符合上述所有条件时才是中奖的时候，两个ID相同并且动画执行的次数大于(或等于也行)设定的最小次数
         clearInterval(this.begin)
         this.setState({
           isRolling: false
@@ -95,7 +89,6 @@ class App extends Component {
         return
       }
 
-      // 以下是动画执行时对id的判断
       if (this.state.activedId === '') {
         num = 0
         this.setState({
@@ -103,7 +96,7 @@ class App extends Component {
         })
       } else {
         num = this.state.activedId
-        if (num === 3) {
+        if (num === 6) {
           num = 0
           this.setState({
             activedId: num
@@ -124,6 +117,7 @@ class App extends Component {
 
 
   groupMaker = (list,num) => {
+
     list=this.state.options[0].class1;
     num=list.length/document.getElementById("perGroup").value;
     let n=list.length-1;
@@ -150,27 +144,40 @@ class App extends Component {
   }
 
 
-  bricks = () => {
+  bricks = (i) => {
     
     let bricks = [];
     let num=12/this.state.num;
 
-    for(let i = 1; i <= num; i++){
+    for(let j = 1; j <= num; j++){
       bricks.push(
-        <RowItem content={this.state.list[i-1]} activedId={this.state.activedId}/>
+        <RowItem show={this.state.groups[i][j-1]} content={this.state.list[j-1]} activedId={this.state.activedId}/>
         )
       }
       return bricks;
   }
 
+
+
   cardMaker = () => {
     let cards = [];
     let groups = this.state.groups;
     for(let i=0; i<groups.length; i++){
+
       cards.push(
         <div>
-        <Card className='card' bordered={false}>
-          <TextArea placeholder="Autosize height based on content lines" autosize />
+        <Card className='card' bordered={false} id={i}>
+
+          <Todo/>
+
+          <br/><br/>
+
+          <div className="prize">
+            {this.bricks(i)}
+          </div>
+          <div className="begin__btn" onClick={() => this.handleBegin()}>
+            Start
+          </div>
         </Card>
         <br/>
         </div>
@@ -235,21 +242,8 @@ class App extends Component {
         <h1 className='resultTitle'>Results</h1>
         <div>
           <ResultList dataSource={this.state}/>
-        </div>
+        </div> 
       </Card>
-      <br/>
-
-      <div>
-        <Card className='card'>
-        <div className="prize">
-            {this.bricks()}
-        </div>
-        <br/><br/><br/>
-        <div className="begin__btn" onClick={() => this.handleBegin()}>
-            Start
-        </div>
-        </Card>
-      </div>
       <br/>
 
       {this.cardMaker()}

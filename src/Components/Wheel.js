@@ -151,3 +151,38 @@ class App extends Component {
 }
 
 export default App;
+
+
+///////////
+
+import React from 'react';
+import {List} from 'antd';
+
+const Student = (props) => <li className="student-item">{props.name}</li>;
+
+class ResultList extends React.Component {
+    state = { 
+        display: false,
+    }
+
+
+
+    render() { 
+        return ( 
+        <div>
+        <List
+            bordered
+            dataSource={this.props.dataSource.results}
+            renderItem={item => (
+                <List.Item>
+                    {item} <br/>
+                    <a className='arrow'> >> </a>
+                </List.Item>)} 
+        />
+
+        </div>
+    );
+    }
+}
+
+export default ResultList;
