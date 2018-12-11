@@ -234,8 +234,9 @@ class App extends Component {
     return (
       <div className='App'>
       <Layout>
-        <Content>        
-          <Row type="flex" justify="center" align="middle">
+        <Content> 
+
+          <Row type="flex" justify="center" align="middle" className='groupRow'>
             <Col span={2}>
               <Icon type="question-circle" 
                 theme="twoTone" 
@@ -274,12 +275,12 @@ class App extends Component {
       <br/>
 
       <div>
-        <Button type='primary' className="button"
+        <Button type='primary' size='large' className="button"
         onClick={this.groupMaker}> 
         Make Groups
         </Button>
       </div>
-      <br/>
+      <br/><br/>
 
       <Card className='card' bordered={false}>
         <h1 className='resultTitle'>Results</h1>

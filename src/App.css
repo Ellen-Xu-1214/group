@@ -145,6 +145,11 @@
   padding: 8px 8px;
 }
 
+.groupRow{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 
 
 #todo {
