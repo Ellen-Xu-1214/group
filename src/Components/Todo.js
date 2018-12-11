@@ -37,10 +37,10 @@ class Todo extends React.Component{
     render() {
         return (
         <div id='todo'>
-            <h2>Tasks</h2>
+            <h2 className='bold'>Tasks</h2>
             <form onSubmit={this.addItem}>
                 <div className="input-group">
-            <input
+            <input className='task-input'
                 onChange={(e) => this.updateText(e.target.value)}
                 type="text" placeholder="What needs to be done?"
                 value = {this.state.text}>

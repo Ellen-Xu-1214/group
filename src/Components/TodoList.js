@@ -9,7 +9,7 @@ class TodoList extends Component {
         <ListItem index={i} key={i} text={item.text} completed={item.completed}
         updateItem={this.props.updateItem} removeItem={this.props.removeItem}/> 
     );
-    return (<ul>{list}</ul>);
+    return (<ul className='task-ul'>{list}</ul>);
     }
 }
 

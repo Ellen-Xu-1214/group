@@ -30,7 +30,6 @@ class Fire extends Component {
 
                 <input type="text" onChange={this.setData}></input>
                 <Button onClick={this.submitData}>Add Student</Button>
-
             </div>
 
         );

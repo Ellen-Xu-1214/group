@@ -7,7 +7,7 @@ import {firebase_config} from './firebase_config.js'
 import ResultList from './Components/ResultList.js';
 import RowItem from './Components/RowItem';
 import Todo from './Components/Todo';
-import Fire from './Components/Input';
+// import Fire from './Components/Input';
 
 firebase.initializeApp(firebase_config);
 const database = firebase.database();
@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      num:'6', 
+      num:'0', 
       results: [],
       groups: [],
       member:[],
@@ -37,10 +37,12 @@ class App extends Component {
 
       options : [
         {
-        value: 'Class 1 (12 students)',
-        label: 'Class 1 (12 students)',
-        number: 12,
-        class1: ['Amy','Jenny','Ben','Lily','Alice','John','Robert','Angel','James','Jacky','Nathan','Willow']
+        value: 'Class 1',
+        label: 'Class 1 (18 students)',
+        number: 18,
+        class1: ['Amy','Jenny','Ben','Lily','Alice','John',
+        'Robert','Angel','James','Jacky','Nathan','Willow',
+        'Rick','Rachel','Max','Amber','Bruce','Ellie']
         },
         {
         value: 'Class 2 (16 students)',
@@ -136,6 +138,22 @@ class App extends Component {
 
   groupMaker = (list,num) => {
 
+    this.setState({num:'0', 
+      results: [],
+      groups: [],
+      member:[],
+      perGroup: '2',
+      
+      list: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      activedId: '',
+      prizeId: null,
+      times: 0,
+      actTimes: 0,
+      isRolling: false,
+      selectedResult: null
+    })
+
+
     list=this.state.options[0].class1;
     num=list.length/document.getElementById("perGroup").value;
     let n=list.length-1;
@@ -165,7 +183,7 @@ class App extends Component {
   bricks = (i) => {
     
     let bricks = [];
-    let num=12/this.state.num;
+    let num=18/this.state.num;
 
     for(let j = 1; j <= num; j++){
       if(this.state.groups[i][j-1] !== undefined){
@@ -179,7 +197,7 @@ class App extends Component {
 
   setSelectedResult=(selectedResult)=>{
     this.setState({selectedResult:selectedResult});
-    console.log(this.state.selectedResult)
+    console.log(this.state.selectedResult);
   }
 
   cardMaker = () => {
@@ -192,7 +210,10 @@ class App extends Component {
         <div>
         <Card className='card' bordered={false} id={i}>
           <Todo/>
-          <br/><br/>
+          <br/>
+          <p className='pink' style={{fontSize: 14}}>
+          What if no one is up to the task?
+          </p>
           <div className="prize">
             {this.bricks(i)}
           </div>
@@ -232,7 +253,6 @@ class App extends Component {
                   placeholder="Select Class"
                   options={this.state.options}
                   size='large'/>
-      <Fire handleSetData={this.setNewData} />
       </Card>
       <br/>
 
