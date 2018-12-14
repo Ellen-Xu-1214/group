@@ -14,8 +14,6 @@ const database = firebase.database();
 
 const { Content } = Layout;
 
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -67,8 +65,8 @@ class App extends Component {
   
   
   setSelectedResult=(selectedResult)=>{
-    console.log(selectedResult[1]);
-    const selectedCard = document.getElementById(selectedResult[1]);
+    console.log(selectedResult.slice(1,));
+    const selectedCard = document.getElementById(selectedResult.slice(1,));
     selectedCard.style.display = 'block';}
   
   setDataOnDB(){
@@ -184,16 +182,7 @@ class App extends Component {
       groups: [],
       member:[],
       perGroup: '2',
-      
-      list: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      activedId: '',
-      prizeId: null,
-      times: 0,
-      actTimes: 0,
-      isRolling: false,
-      selectedResult: null
     })
-
 
     list=this.state.options[0].class1;
     num=list.length/document.getElementById("perGroup").value;
@@ -224,7 +213,7 @@ class App extends Component {
   bricks = (i) => {
     
     let bricks = [];
-    let num=18/this.state.num;
+    let num=400/this.state.num;
 
     for(let j = 1; j <= num; j++){
       if(this.state.groups[i][j-1] !== undefined){
