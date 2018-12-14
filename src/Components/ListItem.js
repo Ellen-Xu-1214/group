@@ -13,7 +13,7 @@ class ListItem extends Component {
         <button onClick={(e) => this.props.removeItem(e.target.value, this.props.index)}>-</button>
         </li>
     );
-    }
+    } 
 }
 
 export default ListItem;

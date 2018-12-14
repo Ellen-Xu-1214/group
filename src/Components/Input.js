@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { message,Input, Button } from 'antd';
 
 class Fire extends Component {
     constructor(props){
@@ -18,8 +18,16 @@ class Fire extends Component {
     }
     
     submitData(){
-      this.props.handleSetData("data", this.state.data)
-      this.props.changeClass()
+      var inputbox = document.getElementById("clear")
+      if (inputbox.value !== ""){
+        this.props.handleSetData("data", this.state.data)
+        inputbox.value = "";
+        message.success('Student is added !');
+      } else {
+        message.warning('You have put a name here !');
+      }
+      
+      
     }
     
     
@@ -28,12 +36,12 @@ class Fire extends Component {
             
             <div className='content'>
 
-                <input type="text" onChange={this.setData}></input>
+                <Input className="inputBox" id="clear" type="text" onChange={this.setData} onPressEnter={this.submitData}></Input>
                 <Button onClick={this.submitData}>Add Student</Button>
             </div>
 
         );
     }
 }
- 
+
 export default Fire;
