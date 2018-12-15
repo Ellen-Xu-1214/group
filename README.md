@@ -7,6 +7,7 @@ In a group, students can break a project down into tasks, and assign the tasks i
 ## Demo
 ![group maker](https://user-images.githubusercontent.com/42094387/50043264-ea310700-00ab-11e9-96a0-72e9d791b9bb.gif)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Built with
+* [Create React App](https://github.com/facebook/create-react-app).
 
 
