@@ -4,7 +4,7 @@ Initially it is designed for teachers to make students into groups for project o
 Students can upload their names to the database and go to their own group. In a group, students can break a project down into tasks, and assign the tasks in a fun and fair way.
 
 ## Demo
-![](group maker.gif)
+![](group-maker.gif)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
