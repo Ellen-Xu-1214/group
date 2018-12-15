@@ -5,7 +5,7 @@ Students can upload their names to the database and go to their own group after 
 In a group, students can break a project down into tasks, and assign the tasks in a fun and fair way.
 
 ## Demo
-![group maker](https://user-images.githubusercontent.com/42094387/50043264-ea310700-00ab-11e9-96a0-72e9d791b9bb.gif)
+![group-maker](https://user-images.githubusercontent.com/42094387/50043554-3cc0f200-00b1-11e9-890f-3992dba25f6d.gif)
 
 ## Built with
 * [Create React App](https://github.com/facebook/create-react-app)
