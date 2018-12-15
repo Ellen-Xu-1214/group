@@ -9,6 +9,6 @@ In a group, students can break a project down into tasks, and assign the tasks i
 
 ## Built with
 * [Create React App](https://github.com/facebook/create-react-app)
-* [Ant Design](https://github.com/ant-design/ant-design) - The app framework used
+* [Ant Design](https://github.com/ant-design/ant-design) - The framework used
 
 
