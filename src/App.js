@@ -37,7 +37,7 @@ class App extends Component {
 
       options : [
         {
-        value: 'Class 1',
+        value: 'EAP Class',
         label: 'EAP Class',
         number: '',
         class1: [],
