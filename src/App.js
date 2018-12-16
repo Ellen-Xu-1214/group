@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import {firebase_config} from './firebase_config.js'
 import ResultList from './Components/ResultList.js';
 import RowItem from './Components/RowItem';
-import Task from './Components/Task';
+import Task from './Components/Todo';
 import Fire from './Components/Input';
 
 firebase.initializeApp(firebase_config);

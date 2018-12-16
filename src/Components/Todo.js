@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TaskList from './TaskList';
+import TaskList from './TodoList';
 
 class Task extends React.Component{
     constructor(p) {
