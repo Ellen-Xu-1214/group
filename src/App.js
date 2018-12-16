@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import {firebase_config} from './firebase_config.js'
 import ResultList from './Components/ResultList.js';
 import RowItem from './Components/RowItem';
-import Todo from './Components/Todo';
+import Task from './Components/Todo';
 import Fire from './Components/Input';
 
 firebase.initializeApp(firebase_config);
@@ -26,8 +26,8 @@ class App extends Component {
       perGroup: '2',
       
       list: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      activedId: '',
-      prizeId: null,
+      redBrick: '',
+      selectedNum: null,
       times: 0,
       actTimes: 0,
       // Whether rolling
@@ -106,14 +106,18 @@ class App extends Component {
     })
   }
   
+  // show the selected class
+  handleChange = (value) => {
+    console.log(value);
+  }
   
   handleBegin() {
     // Start to draw when this.state.isRolling is false
     if (!this.state.isRolling) {
       // After click, back to default
       this.setState({
-        activedId: '',
-        prizeId: null,
+        redBrick: '',
+        selectedNum: null,
         times: 0,
         actTimes: 0,
         isRolling: true
@@ -123,13 +127,14 @@ class App extends Component {
       })
     }
   }
+
   handlePlay() {
     // Random choose id
     let prize = Math.floor(Math.random() * this.state.perGroup)
-    console.log(prize)
+      // console.log(prize)
     this.setState({
-      prizeId: prize,
-      activedId: 0
+      selectedNum: prize,
+      redBrick: 0
     })
     
     let times = this.state.list.length * Math.floor(Math.random() * 3 )
@@ -140,7 +145,7 @@ class App extends Component {
     this.begin = setInterval(() => {
       let num;
 
-      if (this.state.activedId === this.state.prizeId && this.state.actTimes > this.state.times) {
+      if (this.state.redBrick === this.state.selectedNum && this.state.actTimes > this.state.times) {
         clearInterval(this.begin)
         this.setState({
           isRolling: false
@@ -148,22 +153,22 @@ class App extends Component {
         return
       }
 
-      if (this.state.activedId === '') {
+      if (this.state.redBrick === '') {
         num = 0
         this.setState({
-          activedId: num
+          redBrick: num
         })
       } else {
-        num = this.state.activedId
-        if (num === 6) {
+        num = this.state.redBrick
+        if (num === 20) {
           num = 0
           this.setState({
-            activedId: num
+            redBrick: num
           })
         } else {
           num = num + 1
           this.setState({
-            activedId: num
+            redBrick: num
           })
         }
       }
@@ -185,7 +190,7 @@ class App extends Component {
     })
 
     list=this.state.options[0].class1;
-    num=list.length/document.getElementById("perGroup").value;
+    num=list.length/document.getElementById("perGroupNum").value;
     let n=list.length-1;
     let length=n/num;
     let list1=list,list2=[],list3=[];
@@ -204,7 +209,7 @@ class App extends Component {
       results: list2,
       num: num,
       groups:list3, 
-      perGroup: document.getElementById("perGroup").value,
+      perGroup: document.getElementById("perGroupNum").value,
     });
     console.log(list2,list3);
   }
@@ -218,7 +223,7 @@ class App extends Component {
     for(let j = 1; j <= num; j++){
       if(this.state.groups[i][j-1] !== undefined){
       bricks.push(
-        <RowItem show={this.state.groups[i][j-1]} content={this.state.list[j-1]} activedId={this.state.activedId}/>
+        <RowItem show={this.state.groups[i][j-1]} content={this.state.list[j-1]} redBrick={this.state.redBrick}/>
         )
       }
     }
@@ -235,7 +240,7 @@ class App extends Component {
       cards.push(
         <div>
         <Card className='switchCard' bordered={false} id={i}>
-          <Todo/>
+          <Task/>
           <br/>
           <p className='pink' style={{fontSize: 14}}>
           What if no one is up to the task?
@@ -279,7 +284,8 @@ class App extends Component {
         <Cascader addonBefore={<Icon type="usergroup-add" size='large'/>} 
                   placeholder="Select Class"
                   options={this.state.options}
-                  size='large'/>
+                  size='large'
+                  onChange={this.handleChange}/>
       <Fire handleSetData={this.setNewData}/>
       <Button className='reset' type= 'danger' onClick={this.setDataOnDB}>Refresh</Button>
       </Card>
@@ -296,7 +302,7 @@ class App extends Component {
                     step={1} 
                     defaultValue = '2'
                     size='large'
-                    id='perGroup'/>
+                    id='perGroupNum'/>
           </Col>
         </Row>
       </Card>
