@@ -1,14 +1,15 @@
 import React from 'react';
 
-import TodoList from './TodoList';
+import TaskList from './TaskList';
 
-class Todo extends React.Component{
+class Task extends React.Component{
     constructor(p) {
     super(p);
     this.state = {
         text: "",
         items: [ ]
     };
+
     this.updateText = this.updateText.bind(this);
     this.addItem    = this.addItem.bind(this);
     this.updateItem = this.updateItem.bind(this);
@@ -49,7 +50,7 @@ class Todo extends React.Component{
             </div>
             </form>
             
-            <TodoList data={this.state.items} 
+            <TaskList data={this.state.items} 
                 updateItem={this.updateItem} removeItem={this.removeItem}/>
         </div>
         );
@@ -57,4 +58,4 @@ class Todo extends React.Component{
 }
 
 
-export default Todo;
+export default Task;

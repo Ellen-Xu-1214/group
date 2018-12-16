@@ -5,7 +5,7 @@
 .App {
   text-align: center;
   height: 667px;
-  width: 375px;
+  width: 375px; 
   margin:0 auto;
 }
 
@@ -96,7 +96,6 @@
 }
 
 
-
 .prize {
   width: 250px;
   margin: 0 auto;
@@ -139,6 +138,7 @@
   padding: 0;
   border-bottom: 2px dashed #C1DEEB;
 }
+
 .student-item {
   margin-bottom: 8px;
   border: 1px solid #C1DEEB;
@@ -151,7 +151,6 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
-
 
 
 #todo {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ListItem from './ListItem';
 
-class TodoList extends Component {
+class TaskList extends Component {
 
     render() {
     let list = this.props.data.map((item, i) =>
@@ -13,4 +13,4 @@ class TodoList extends Component {
     }
 }
 
-export default TodoList;
+export default TaskList;
