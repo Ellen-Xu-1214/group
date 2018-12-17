@@ -10,15 +10,15 @@ class Task extends React.Component{
         items: [ ]
     };
 
-    this.updateText = this.updateText.bind(this);
-    this.addItem    = this.addItem.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.updateItem = this.updateItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     }
     
-    updateText(t) { this.setState({text: t}); }
+    handleChange(t) { this.setState({text: t}); }
     
-    addItem(e) {
+    handleSubmit(e) {
         e.preventDefault();
         if (!this.state.text) return;
         let item = { text: this.state.text, completed: false };
@@ -39,10 +39,10 @@ class Task extends React.Component{
         return (
         <div id='todo'>
             <h2 className='bold'>Tasks</h2>
-            <form onSubmit={this.addItem}>
+            <form onSubmit={this.handleSubmit}>
                 <div className="input-group">
             <input className='task-input'
-                onChange={(e) => this.updateText(e.target.value)}
+                onChange={(e) => this.handleChange(e.target.value)}
                 type="text" placeholder="What needs to be done?"
                 value = {this.state.text}>
             </input>

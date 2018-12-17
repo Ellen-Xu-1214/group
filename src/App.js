@@ -63,7 +63,6 @@ class App extends Component {
     document.location.reload();
   }
   
-  
   setSelectedResult=(selectedResult)=>{
     console.log(selectedResult.slice(1,));
     const selectedCard = document.getElementById(selectedResult.slice(1,));
@@ -111,7 +110,8 @@ class App extends Component {
     console.log(value);
   }
   
-  handleBegin() {
+  handleBegin = () =>{
+    // const arrDiv = document.getElementsByClassName("square");
     // Start to draw when this.state.isRolling is false
     if (!this.state.isRolling) {
       // After click, back to default
@@ -128,12 +128,48 @@ class App extends Component {
     }
   }
 
-  handlePlay() {
-    // Random choose id
-    let prize = Math.floor(Math.random() * this.state.perGroup)
-      // console.log(prize)
+  handleRoll= () => {
+    let num;
+
+    if (this.state.redBrick === this.state.selectedNum && this.state.actTimes > this.state.times) {
+      clearInterval(this.begin)
+      this.setState({
+        isRolling: false
+      })
+      return
+    }
+
+    if (this.state.redBrick === '') {
+      num = 0
+      this.setState({
+        redBrick: num
+      })
+    } else {
+      num = this.state.redBrick
+      if (num === 6) {
+        num = 0;
+        this.setState({
+          redBrick: num
+        })
+      } else {
+        num += 1;
+        this.setState({
+          redBrick: num
+        })
+      }
+    }
+
     this.setState({
-      selectedNum: prize,
+      actTimes: this.state.actTimes + 1
+    })
+  }
+
+  handlePlay = () => {
+    // Random choose id
+    let selected = Math.floor(Math.random() * this.state.perGroup)
+      // console.log(selected)
+    this.setState({
+      selectedNum: selected,
       redBrick: 0
     })
     
@@ -141,42 +177,9 @@ class App extends Component {
     this.setState({
       times: times
     })
+
     // Drawing
-    this.begin = setInterval(() => {
-      let num;
-
-      if (this.state.redBrick === this.state.selectedNum && this.state.actTimes > this.state.times) {
-        clearInterval(this.begin)
-        this.setState({
-          isRolling: false
-        })
-        return
-      }
-
-      if (this.state.redBrick === '') {
-        num = 0
-        this.setState({
-          redBrick: num
-        })
-      } else {
-        num = this.state.redBrick
-        if (num === 20) {
-          num = 0
-          this.setState({
-            redBrick: num
-          })
-        } else {
-          num = num + 1
-          this.setState({
-            redBrick: num
-          })
-        }
-      }
-
-      this.setState({
-        actTimes: this.state.actTimes + 1
-      })
-    }, 100)
+    this.begin = setInterval(() => this.handleRoll(), 100)
   }
 
 
@@ -223,7 +226,7 @@ class App extends Component {
     for(let j = 1; j <= num; j++){
       if(this.state.groups[i][j-1] !== undefined){
       bricks.push(
-        <RowItem show={this.state.groups[i][j-1]} content={this.state.list[j-1]} redBrick={this.state.redBrick}/>
+        <RowItem className='square' show={this.state.groups[i][j-1]} content={this.state.list[j-1]} redBrick={this.state.redBrick}/>
         )
       }
     }
@@ -248,7 +251,7 @@ class App extends Component {
           <div className="prize">
             {this.bricks(i)}
           </div>
-          <div className="begin__btn" onClick={() => this.handleBegin()}>
+          <div className="begin__btn" onClick={this.handleBegin}>
             Start
           </div>
         </Card>

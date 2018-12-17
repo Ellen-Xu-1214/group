@@ -115,7 +115,7 @@
   margin:0 auto;
 }
 
-.row__item {
+.brick {
   width: 60px;
   height: 60px;
   border-radius: 6px;
@@ -128,7 +128,7 @@
   margin-bottom: 10px;
 }
 
-.row__item-active {
+.brick-active {
   background-color: rgb(255, 163, 161);
 }
 
