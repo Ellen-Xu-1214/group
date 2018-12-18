@@ -130,6 +130,7 @@ class App extends Component {
 
   handleRoll= () => {
     let num;
+    let actTimes = this.state.actTimes;
 
     if (this.state.redBrick === this.state.selectedNum && this.state.actTimes > this.state.times) {
       clearInterval(this.begin)
@@ -159,8 +160,9 @@ class App extends Component {
       }
     }
 
+    actTimes += 1;
     this.setState({
-      actTimes: this.state.actTimes + 1
+      actTimes: actTimes
     })
   }
 
@@ -179,7 +181,7 @@ class App extends Component {
     })
 
     // Drawing
-    this.begin = setInterval(() => this.handleRoll(), 100)
+    this.begin = setInterval(this.handleRoll, 100)
   }
 
 
