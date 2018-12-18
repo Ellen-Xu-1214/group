@@ -131,6 +131,11 @@ class App extends Component {
   handleRoll= () => {
     let num;
     let actTimes = this.state.actTimes;
+    
+    actTimes += 1;
+    this.setState({
+      actTimes: actTimes
+    })
 
     if (this.state.redBrick === this.state.selectedNum && this.state.actTimes > this.state.times) {
       clearInterval(this.begin)
@@ -160,23 +165,16 @@ class App extends Component {
       }
     }
 
-    actTimes += 1;
-    this.setState({
-      actTimes: actTimes
-    })
   }
 
   handlePlay = () => {
     // Random choose id
-    let selected = Math.floor(Math.random() * this.state.perGroup)
+    let selected = Math.floor(Math.random() * this.state.perGroup);
+    let times = this.state.list.length * Math.floor(Math.random() * 3 );
       // console.log(selected)
     this.setState({
       selectedNum: selected,
-      redBrick: 0
-    })
-    
-    let times = this.state.list.length * Math.floor(Math.random() * 3 )
-    this.setState({
+      redBrick: 0,
       times: times
     })
 
